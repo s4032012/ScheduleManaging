@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Lịch Học Pro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="wrapper">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-calendar-alt"></i> Lịch Học</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" id="toggle-form"><i class="fas fa-plus"></i> Thêm Lịch Học</a></li>
+                <li><a href="#" id="toggle-theme"><i class="fas fa-moon"></i> Chuyển Theme</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content" id="main-content">
+            <header>
+                <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
+                <h1>Quản Lý Lịch Học</h1>
+                <div class="user-info">
+                    <span>Xin chào, Người dùng</span>
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            </header>
+
+            <div class="schedule-form" id="schedule-form" style="display: none;">
+                <div class="form-header">
+                    <h2>Thêm Buổi Học Mới</h2>
+                    <button onclick="closeForm()" class="btn-close-form"><i class="fas fa-times"></i></button>
+                </div>
+                <input type="text" id="subject" placeholder="Tên môn học" required>
+                <input type="date" id="date" required>
+                <div class="time-inputs">
+                    <input type="time" id="start-time" placeholder="Giờ bắt đầu" required>
+                    <input type="time" id="end-time" placeholder="Giờ kết thúc" required>
+                </div>
+                <textarea id="notes" placeholder="Ghi chú buổi học"></textarea>
+                <div class="materials-group">
+                    <label>Tài liệu học tập:</label>
+                    <input type="file" id="material-file" accept=".pdf,.docx,.txt">
+                    <input type="url" id="material-link" placeholder="Hoặc nhập link tài liệu">
+                </div>
+                <button onclick="addSchedule()" class="btn btn-success">Thêm Lịch</button>
+            </div>
+
+            <div class="calendar-container">
+                <div id="calendar"></div>
+            </div>
+
+            <div class="modal" id="event-modal" style="display: none;">
+                <div class="modal-content">
+                    <h2><i class="fas fa-info-circle"></i> Chi tiết buổi học</h2>
+                    <p><strong>Môn học:</strong> <span id="modal-subject"></span></p>
+                    <p><strong>Ngày:</strong> <span id="modal-date"></span></p>
+                    <p><strong>Thời gian:</strong> <span id="modal-time"></span></p>
+                    <p><strong>Ghi chú:</strong> <span id="modal-notes"></span></p>
+                    <p><strong>Tài liệu:</strong> <span id="modal-materials"></span></p>
+                    <div class="modal-buttons">
+                        <button onclick="editEvent()" class="btn btn-edit"><i class="fas fa-edit"></i> Sửa</button>
+                        <button onclick="deleteEvent()" class="btn btn-delete"><i class="fas fa-trash"></i> Xóa</button>
+                        <button onclick="closeModal()" class="btn btn-close"><i class="fas fa-times"></i> Đóng</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notification" id="notification" style="display: none;"></div>
+        </main>
+    </div>
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+    <script src="script.js"></script>
+</body>
+</html>
